@@ -31,6 +31,10 @@ def create_repo
   HTTParty.put("http://localhost:9200/_snapshot/#{repo_name}", options)
 end
 
+def delete_repo
+  HTTParty.delete("http://localhost:9200/_snapshot/#{repo_name}")
+end
+
 def create_snapshot
   snapshot_name = "snapshot-#{ElasticsearchCameraman::Timestamp.generate}"
   HTTParty.put("http://localhost:9200/_snapshot/#{repo_name}/#{snapshot_name}?wait_for_completion=true")
