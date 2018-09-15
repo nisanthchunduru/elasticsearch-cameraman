@@ -54,5 +54,5 @@ def delete_all_snapshots
 end
 
 def repo_name
-  "s3_repo"
+  "s3_backup_repo"
 end
