@@ -41,16 +41,15 @@ def create_snapshot
 end
 
 def all_snapshots
-  response = HTTParty.get("http://localhost:9200/_snapshot/#{repo_name}/_all")
-  response["snapshots"].map { |snapshot_hash| ElasticsearchCameraman::Snapshot.new(snapshot_hash) }
+  ElasticsearchCameraman::Snapshot.all
 end
 
-def delete_snapshot(snapshot_name)
-  HTTParty.delete("http://localhost:9200/_snapshot/#{repo_name}/#{snapshot_name}?wait_for_completion=true")
+def delete_snapshot_having_name(snapshot_name)
+  ElasticsearchCameraman::Snapshot.delete(snapshot_name)
 end
 
-def delete_all_snapshots
-  all_snapshots.each { |snapshot| delete_snapshot(snapshot.name) }
+def delete_snapshots_created_before(time)
+  ElasticsearchCameraman::Snapshot.created_before(time).each { |snapshot| snapshot.delete }
 end
 
 def repo_name

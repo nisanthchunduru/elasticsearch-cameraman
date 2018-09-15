@@ -12,7 +12,14 @@ when "list_snapshots"
   puts all_snapshots.map(&:name)
 when "delete_snapshot"
   snapshot_name = ARGV[1]
-  delete_snapshot(snapshot_name)
+  delete_snapshot_having_name(snapshot_name)
+when "delete_snapshots"
+  # @todo Use an option parser gem
+  days = ARGV[2].to_i
+  days_in_seconds = days * 24 * 3600
+  time = Time.now - days_in_seconds
+
+  delete_snapshots_created_before(time)
 else
   # @todo Print usage instructions
 end
