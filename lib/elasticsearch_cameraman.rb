@@ -45,6 +45,10 @@ def delete_snapshot(snapshot_name)
   HTTParty.delete("http://localhost:9200/_snapshot/#{repo_name}/#{snapshot_name}?wait_for_completion=true")
 end
 
+def delete_all_snapshots
+  all_snapshots.each { |snapshot| delete_snapshot(snapshot.name) }
+end
+
 def repo_name
   "s3_repo"
 end
