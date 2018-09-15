@@ -41,6 +41,10 @@ def all_snapshots
   response["snapshots"].map { |snapshot_hash| ES2S3::Snapshot.new(snapshot_hash) }
 end
 
+def delete_snapshot(snapshot_name)
+  HTTParty.delete("http://localhost:9200/_snapshot/#{repo_name}/#{snapshot_name}?wait_for_completion=true")
+end
+
 def repo_name
   "s3_repo"
 end

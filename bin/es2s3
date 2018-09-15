@@ -8,6 +8,9 @@ command = ARGV[0]
 case command
 when "list"
   puts all_snapshots.map(&:name)
+when "delete"
+  snapshot_name = ARGV[1]
+  delete_snapshot(snapshot_name)
 else
   create_snapshot
 end
