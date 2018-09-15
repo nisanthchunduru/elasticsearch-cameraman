@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    es2s3 (1.0.0.pre)
+    elasticsearch-cameraman (1.0.0.pre)
       httparty
 
 GEM
@@ -21,7 +21,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  es2s3!
+  elasticsearch-cameraman!
   pry
   rake
 

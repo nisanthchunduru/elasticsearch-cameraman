@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "es2s3"
+require "elasticsearch-cameraman"
 
 create_repo unless repo_exists?
 

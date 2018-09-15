@@ -1,4 +1,4 @@
-module ES2S3
+module ElasticsearchCameraman
   class Snapshot
     def initialize(snapshot_hash)
       @snapshot_hash = snapshot_hash

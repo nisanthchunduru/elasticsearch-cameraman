@@ -1,5 +1,5 @@
 task :console do
-  require "es2s3"
+  require "elasticsearch_cameraman"
   require "pry"
   binding.pry
 end

@@ -1,4 +1,4 @@
-module ES2S3
+module ElasticsearchCameraman
   class Timestamp
     class << self
       def generate

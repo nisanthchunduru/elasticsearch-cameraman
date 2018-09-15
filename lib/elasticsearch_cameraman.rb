@@ -1,11 +1,11 @@
 require "httparty"
 require "json"
 
-require "es2s3/timestamp"
-require "es2s3/snapshot"
+require "elasticsearch_cameraman/timestamp"
+require "elasticsearch_cameraman/snapshot"
 
 def config
-  @config ||= YAML.load_file(File.expand_path("~/.es2s3.yml"))
+  @config ||= YAML.load_file(File.expand_path("~/.elasticsearch_cameraman.yml"))
 end
 
 def repo_exists?
@@ -32,13 +32,13 @@ def create_repo
 end
 
 def create_snapshot
-  snapshot_name = "snapshot-#{ES2S3::Timestamp.generate}"
+  snapshot_name = "snapshot-#{ElasticsearchCameraman::Timestamp.generate}"
   HTTParty.put("http://localhost:9200/_snapshot/#{repo_name}/#{snapshot_name}?wait_for_completion=true")
 end
 
 def all_snapshots
   response = HTTParty.get("http://localhost:9200/_snapshot/#{repo_name}/_all")
-  response["snapshots"].map { |snapshot_hash| ES2S3::Snapshot.new(snapshot_hash) }
+  response["snapshots"].map { |snapshot_hash| ElasticsearchCameraman::Snapshot.new(snapshot_hash) }
 end
 
 def delete_snapshot(snapshot_name)

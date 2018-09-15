@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name          = "es2s3"
+  s.name          = "elasticsearch-cameraman"
   s.summary       = "Backup Elasticsearch to Amazon S3"
   s.version       = `cat VERSION`
   s.date          = "2018-09-15"
