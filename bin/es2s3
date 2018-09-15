@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "es2s3"
+
+create_repo unless repo_exists?
+create_snapshot
