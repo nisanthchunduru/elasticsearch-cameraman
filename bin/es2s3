@@ -3,4 +3,11 @@
 require "es2s3"
 
 create_repo unless repo_exists?
-create_snapshot
+
+command = ARGV[0]
+case command
+when "list"
+  puts all_snapshots.map(&:name)
+else
+  create_snapshot
+end

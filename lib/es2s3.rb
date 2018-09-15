@@ -2,6 +2,7 @@ require "httparty"
 require "json"
 
 require "es2s3/timestamp"
+require "es2s3/snapshot"
 
 def config
   @config ||= YAML.load_file(File.expand_path("~/.es2s3.yml"))
@@ -33,6 +34,11 @@ end
 def create_snapshot
   snapshot_name = "snapshot-#{ES2S3::Timestamp.generate}"
   HTTParty.put("http://localhost:9200/_snapshot/#{repo_name}/#{snapshot_name}?wait_for_completion=true")
+end
+
+def all_snapshots
+  response = HTTParty.get("http://localhost:9200/_snapshot/#{repo_name}/_all")
+  response["snapshots"].map { |snapshot_hash| ES2S3::Snapshot.new(snapshot_hash) }
 end
 
 def repo_name
