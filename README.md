@@ -1,4 +1,4 @@
----
+### 🚨 Notice 🚨
 
 I don't maintain elasticsearch-cameraman anymore. I recommend using Elastic's [elasticsearch-curator](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html) command line tool to backup your Elasticsearch instance to Amazon S3.
 
@@ -23,13 +23,13 @@ git clone git@github.com:nisanth074/elasticsearch-cameraman.git
 Create a snapshot
 
 ```
-bin/cameraman snapshot
+bin/cameraman snapshot snapshot_name
 ```
 
 List existing snapshots
 
 ```
-bin/cameraman snapshot
+bin/cameraman list_snapshots
 ```
 
 Delete a specific snapshot
@@ -41,7 +41,7 @@ bin/cameraman snapshot_name
 Delete snapshots older than the given number of days
 
 ```
-bin/cameraman --older-than 30
+bin/cameraman delete_snapshots --older-than 30
 ```
 
 ## Todo
